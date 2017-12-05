@@ -7,6 +7,8 @@ import (
 	"net"
 	"time"
 
+	"github.com/bifurcation/mint"
+
 	"github.com/lucas-clemente/quic-go/internal/crypto"
 	"github.com/lucas-clemente/quic-go/internal/mocks/crypto"
 	"github.com/lucas-clemente/quic-go/internal/protocol"
@@ -96,7 +98,7 @@ type mockCookieSource struct {
 	decodeErr error
 }
 
-var _ crypto.StkSource = &mockCookieSource{}
+var _ mint.CookieSource = &mockCookieSource{}
 
 func (mockCookieSource) NewToken(sourceAddr []byte) ([]byte, error) {
 	return append([]byte("token "), sourceAddr...), nil

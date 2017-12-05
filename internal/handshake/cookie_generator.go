@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/lucas-clemente/quic-go/internal/crypto"
+	"github.com/bifurcation/mint"
 )
 
 const (
@@ -29,17 +29,17 @@ type token struct {
 
 // A CookieGenerator generates Cookies
 type CookieGenerator struct {
-	cookieSource crypto.StkSource
+	cookieSource mint.CookieSource
 }
 
 // NewCookieGenerator initializes a new CookieGenerator
 func NewCookieGenerator() (*CookieGenerator, error) {
-	stkSource, err := crypto.NewStkSource()
+	cookieSource, err := mint.NewDefaultCookieSource()
 	if err != nil {
 		return nil, err
 	}
 	return &CookieGenerator{
-		cookieSource: stkSource,
+		cookieSource: cookieSource,
 	}, nil
 }
 
